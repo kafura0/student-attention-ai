@@ -1,14 +1,15 @@
 # "IN THE WILD" DRIVER ATTENTION DETECTION USING DEEP LEARNING
+![Run Demo](final_demo.gif)
 
-This repository shows how to perferm a head pose estimation in real time video footage. 
+This repository shows how to perform a head pose estimation in real time video footage. 
 
 The project was intended to solve the problem of drowsy driving and thus a major requirement was that it works in "in the wild" situations. This determined the choise of the libraries used.
 
-The following publicsation discusses in detail the research of the topic and the considerations involved: https://www.researchgate.net/publication/334286261_Convolution_Neural_Networks_for_Head_pose_estimation_in_the_wild
+The following publication discusses in detail the research of the topic and the considerations involved: https://www.researchgate.net/publication/334286261_Convolution_Neural_Networks_for_Head_pose_estimation_in_the_wild
 
  ## LIBRARIES USED
-* Dockerface - Face Detection Docker Solution Using Faster R-CNN
-* deep head pose - ResNet50
+* Dockerface 
+* deep head pose 
 * PyTorch
 * FLask
 
