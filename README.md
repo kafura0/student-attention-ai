@@ -1,4 +1,7 @@
-# "IN THE WILD" DRIVER ATTENTION DETECTION USING DEEP LEARNING
+REAL-TIME FINE-GRAINED HEAD POSE ESTIAMTION USING DEEP LEARNING
+The original work: [GitHub](http://github.com/natanielruiz/deep-head-pose)
+This repo was a part of my Nottingham University Thesis.
+
 ![Run Demo](final_demo.gif)
 
 This repository shows how to perform a head pose estimation in real time video footage. 
@@ -12,6 +15,13 @@ The following publication discusses in detail the research of the topic and the 
 * deep head pose 
 * PyTorch
 * FLask
+
+##REQUIREMENTS
+* numpy
+* pytorch
+* torchvision
+* opencv2
+* pillow
 
 ## Flow of the code 
 * The image is passed to head pose estimator on the server , the server gets face bounding box predictions from dockerface running on localhost:5000 on server , the predictions are used to get head pose pitch ,yaw and roll.
