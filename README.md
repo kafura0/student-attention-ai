@@ -1,30 +1,84 @@
-REAL-TIME FINE-GRAINED HEAD POSE ESTIAMTION USING DEEP LEARNING
-The original work: [GitHub](http://github.com/natanielruiz/deep-head-pose)
-This repo was a part of my Nottingham University Thesis.
-
 ![Run Demo](final_demo.gif)
 
-This repository shows how to perform a head pose estimation in real time video footage. 
+# 🧠 Student Attention Detection (AI Prototype)
 
-The project was intended to solve the problem of drowsy driving and thus a major requirement was that it works in "in the wild" situations. This determined the choise of the libraries used.
+An AI prototype that uses facial behavior tracking to infer student attention levels during online learning sessions.
 
-The following publication discusses in detail the research of the topic and the considerations involved: https://www.researchgate.net/publication/334286261_Convolution_Neural_Networks_for_Head_pose_estimation_in_the_wild
+## 🎯 Goal
 
- ## LIBRARIES USED
-* Dockerface 
-* deep head pose 
-* PyTorch
-* FLask
+To help educators monitor and improve student engagement by analyzing visual cues like head position and eye direction using machine learning.
 
-##REQUIREMENTS
-* numpy
-* pytorch
-* torchvision
-* opencv2
-* pillow
+## 🔍 Features
 
-## Flow of the code 
-* The image is passed to head pose estimator on the server , the server gets face bounding box predictions from dockerface running on localhost:5000 on server , the predictions are used to get head pose pitch ,yaw and roll.
+- 🔴 Real-time webcam feed processing
+- 🧠 Face detection and landmark extraction using OpenCV
+- 📐 Tracks head tilt, blink rate, and gaze direction
+- 🧪 Early-stage attention scoring model
+
+## 🛠 Tech Stack
+
+- Python
+- OpenCV
+- Dlib / Mediapipe
+- Numpy / Scikit-learn
+
+## 🚀 Setup
+
+```bash
+git clone https://github.com/kafura0/student-attention-ai.git
+cd student-attention-ai
+pip install -r requirements.txt
+python detect_attention.py
+Ensure your webcam is enabled and functional.
+
+⚙️ Example Workflow
+Start video stream
+
+Extract eye landmarks + head pose
+
+Calculate heuristic attention score
+
+Optionally, log timestamps and attention dips
+
+📌 Limitations
+Prototype only – not production-grade
+
+Not yet trained on large datasets
+
+Accuracy may vary based on lighting & device
+
+👩🏽‍💻 Author
+Created by Joan Kabura Njoroge to explore how AI can support remote learning environments.
+
+yaml
+Copy
+Edit
+
+---
+
+Would you like help:
+- Adding these directly to your repos?
+- Creating screenshots or GIFs to include in the READMEs?
+- Planning enhancements to either project (e.g. deploy NLP results in a Streamlit app)?
+
+Once these are done, we’ll move on to:
+✅ Resume  
+✅ Cover letter  
+✅ Job targeting  
+✅ Mentorship circles
+
+Just say the word!
+
+
+
+
+
+
+
+
+Ask ChatGPT
+
+
 * These values are used to issue warning if out of limit.
 * The detected face bounding box and frame is passd to eye_closed_utils.py , which detects face features and finds the distance between the eye lids.
 * Threshold is set to 0.25 if value less then that then eyes are closed.
