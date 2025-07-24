@@ -1,6 +1,6 @@
-streamlit==1.29.0
-opencv-python==4.9.0.80
-mediapipe==0.10.9
+streamlit>=1.33.0
+opencv-python
 numpy
 pandas
-altair
+mediapipe
+matplotlib
