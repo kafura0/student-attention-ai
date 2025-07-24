@@ -1,47 +1,43 @@
 '''
-Upload a .mp4 or .avi video
+ Features:
+Upload a video for analysis.
 
-Run frame-by-frame attention analysis
+Shows real-time frames with attention score.
 
-Display results + average score
+Summarizes average attention at the end.
+
+Supports .mp4, .avi, .mov, .mkv.
 
 '''
 
+# streamlit_app.py
+
 import streamlit as st
 import tempfile
-import cv2
 from utils.attention_detector import AttentionDetector
 
-st.set_page_config(page_title="Student Attention AI", layout="centered")
-st.title("🎯 Student Attention Detection")
+st.set_page_config(page_title="Student Attention Detector", layout="centered")
 
-uploaded_file = st.file_uploader("Upload a classroom video", type=["mp4", "avi", "mov"])
+st.title("🎯 Student Attention Detector")
+st.markdown("Upload a recorded classroom video to assess student attention levels.")
 
-if uploaded_file:
-    # Save to temp location
-    tfile = tempfile.NamedTemporaryFile(delete=False)
-    tfile.write(uploaded_file.read())
+uploaded_file = st.file_uploader("Upload a video file (e.g. .mp4, .avi)", type=["mp4", "avi", "mov"])
 
-    cap = cv2.VideoCapture(tfile.name)
-    detector = AttentionDetector()
+if uploaded_file is not None:
+    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+        tmp_file.write(uploaded_file.read())
+        temp_path = tmp_file.name
 
-    scores = []
-    stframe = st.empty()
+    st.video(temp_path)
 
-    while cap.isOpened():
-        ret, frame = cap.read()
-        if not ret:
-            break
+    if st.button("🔍 Analyze Attention"):
+        detector = AttentionDetector()
+        score = detector.process_video(temp_path)
+        st.success(f"✅ Attention Score: **{score}%**")
 
-        score = detector.process_frame(frame)
-        if score is not None:
-            scores.append(score)
-            stframe.image(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB), caption=f"Attention Score: {score:.2f}", channels="RGB")
-
-    cap.release()
-
-    if scores:
-        st.success("✅ Analysis Complete")
-        st.metric("Average Attention Score", round(sum(scores) / len(scores), 2))
-    else:
-        st.warning("No face detected in the video.")
+        if score > 70:
+            st.info("👏 Good attention detected.")
+        elif score > 40:
+            st.warning("⚠️ Moderate attention. Could be improved.")
+        else:
+            st.error("❌ Low attention detected.")

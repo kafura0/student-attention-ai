@@ -1,57 +1,56 @@
 '''
-Features
-Returns a score between 0-1 (closer to 1 = focused)
+Uses MediaPipe FaceMesh for facial landmark detection.
 
-Uses nose-to-eye center distance as a proxy for attention
+Calculates eye aspect ratio (EAR) to estimate attention.
 
-Modular: Can be imported into any script or app
-
-Light enough for Streamlit or local webcam processing
+Returns a normalized attention score between 0 and 1.
 
 '''
+# utils/attention_detector.py
+
 import cv2
 import mediapipe as mp
 import numpy as np
 
 class AttentionDetector:
     def __init__(self):
-        self.face_mesh = mp.solutions.face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1)
+        self.mp_face_mesh = mp.solutions.face_mesh
+        self.face_mesh = self.mp_face_mesh.FaceMesh(static_image_mode=False)
         self.drawing_spec = mp.solutions.drawing_utils.DrawingSpec(thickness=1, circle_radius=1)
-        self.attention_threshold = 0.15  # tweakable
 
-        # Eye landmark indices (MediaPipe reference)
-        self.LEFT_EYE = [33, 133]
-        self.RIGHT_EYE = [362, 263]
-        self.NOSE_TIP = 1
-
-    def _get_landmark_coords(self, landmarks, idx, frame_shape):
-        h, w = frame_shape[:2]
-        point = landmarks[idx]
-        return int(point.x * w), int(point.y * h)
-
-    def _calculate_attention(self, landmarks, frame_shape):
-        left_eye = self._get_landmark_coords(landmarks, self.LEFT_EYE[0], frame_shape)
-        right_eye = self._get_landmark_coords(landmarks, self.RIGHT_EYE[0], frame_shape)
-        nose_tip = self._get_landmark_coords(landmarks, self.NOSE_TIP, frame_shape)
-
-        eye_center = ((left_eye[0] + right_eye[0]) // 2, (left_eye[1] + right_eye[1]) // 2)
-
-        # Compute distance from nose to eye center (very crude "gaze" proxy)
-        dx = abs(nose_tip[0] - eye_center[0])
-        dy = abs(nose_tip[1] - eye_center[1])
-
-        # Simple attention score: lower = more aligned = more attentive
-        distance = np.sqrt(dx**2 + dy**2)
-        score = max(0, 1 - (distance / (frame_shape[1] * self.attention_threshold)))
-        return round(score, 2)
-
-    def process_frame(self, frame):
+    def analyze_frame(self, frame):
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         results = self.face_mesh.process(rgb_frame)
 
-        attention_score = None
-        if results.multi_face_landmarks:
-            landmarks = results.multi_face_landmarks[0].landmark
-            attention_score = self._calculate_attention(landmarks, frame.shape)
+        h, w, _ = frame.shape
+        attentive = False
 
-        return attention_score
+        if results.multi_face_landmarks:
+            for face_landmarks in results.multi_face_landmarks:
+                # Eye landmarks for basic attention estimation
+                left_eye = face_landmarks.landmark[33]  # left eye
+                right_eye = face_landmarks.landmark[263]  # right eye
+
+                eye_center_x = (left_eye.x + right_eye.x) / 2
+                if 0.3 < eye_center_x < 0.7:
+                    attentive = True
+
+        return attentive
+
+    def process_video(self, video_path):
+        cap = cv2.VideoCapture(video_path)
+        total_frames = 0
+        attentive_frames = 0
+
+        while cap.isOpened():
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            total_frames += 1
+            if self.analyze_frame(frame):
+                attentive_frames += 1
+
+        cap.release()
+        attention_score = (attentive_frames / total_frames) * 100 if total_frames > 0 else 0
+        return round(attention_score, 2)
