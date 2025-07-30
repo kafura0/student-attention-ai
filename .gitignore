@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv/
+attentionVenv/
+
+# Streamlit
+.streamlit/
+
+# Logs
+*.log

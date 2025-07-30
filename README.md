@@ -1,95 +1,98 @@
-# 🧠 Student Attention AI
+🧠 Student Attention AI
+Real-time Attention Detection App for students using webcam or uploaded videos. Detects attentiveness based on facial orientation and eye closure using computer vision and machine learning.
 
-A lightweight attention detection system that analyzes student focus from video input. Built for virtual classrooms, it helps educators assess real-time or recorded engagement levels using computer vision and facial landmarks.
+Built with Streamlit, MediaPipe, and OpenCV – deployable on both desktop and mobile via browser.
 
-![Demo Screenshot](assets/demo_screenshot.png)
+🚀 Features
+✅ Live camera or uploaded video analysis
 
----
+✅ Face detection with attention scoring
 
-## 🚀 Features
+✅ Eye closure detection (EAR-based) for drowsiness detection
 
-- 📹 **Video Upload & Analysis** — Upload a pre-recorded lecture video
-- 🧑‍💻 **Live Webcam Support** — Run real-time attention detection via webcam
-- 🧠 **Blink & Head Pose Estimation** — Detect distraction based on blinking rate and head movement
-- 📊 **Attention Scoring** — Generate frame-by-frame focus scores
-- 🎛️ **Streamlit Interface** — Easy to use frontend with upload and results panel
+✅ Real-time annotated video display
 
----
+✅ Attention logs exportable to CSV
 
-## 🛠️ Tech Stack
+✅ Visual attention timeline chart
 
-- Python 3.10+
-- OpenCV
-- dlib
-- imutils
-- numpy
-- Streamlit
-- Mediapipe (optional future addition)
+✅ Easy deployment via Streamlit Cloud
 
----
-
-## 📂 Project Structure
-
-student-attention-ai/
-├── streamlit_app.py # Streamlit frontend app
-├── live_test.py # Webcam-based real-time test
-├── requirements.txt
-├── utils/
-│ └── attention_detector.py # Core logic: blink, gaze, scoring
-├── assets/
-│ ├── demo_screenshot.png # Optional demo image
-│ └── attention_video_sample.mp4
-└── README.md
-
-
----
-
-## ▶️ How to Use
-
-### 1. 🔧 Setup
-
-```bash
-git clone https://github.com/kafura0/student-attention-ai.git
+📸 Demo
+<img src="https://github.com/your-username/student-attention-ai/assets/demo.gif" width="600"/>
+🛠️ Installation
+bash
+Copy
+Edit
+git clone https://github.com/your-username/student-attention-ai.git
 cd student-attention-ai
 pip install -r requirements.txt
-```
-
-### 2.  Run the Streamlit App (File Upload)
-```
 streamlit run streamlit_app.py
-```
-Upload a short classroom or face-focused video clip (.mp4/.mov).
+📝 Python ≥ 3.8 recommended. For live webcam use, ensure camera permissions are allowed.
 
-### 3. 📡 Run Live Webcam Detector (Optional)
+📂 Project Structure
+bash
+Copy
+Edit
+student-attention-ai/
+│
+├── streamlit_app.py           # Streamlit UI and logic
+├── utils/
+│   └── attention_detector.py  # Face + Eye Closure detection
+├── logs/
+│   └── attention_log.csv      # Exported attention sessions
+├── requirements.txt
+└── README.md
+📈 Example Use Cases
+🏫 Online learning platforms (Zoom/Google Meet)
 
-```
-python live_test.py
-```
-Press q to exit.
+🧪 Remote exam invigilation
 
-### 💡 How Attention is Calculated
-Attention scores are based on:
+👩‍🏫 Classroom analytics
 
-Eye aspect ratio (blink frequency)
+💼 Employee monitoring (optional adaptation)
 
-Head pose direction
+📤 Deployment (Streamlit Cloud)
+Push the project to GitHub
 
-Face presence duration in frame
+Visit streamlit.io/cloud
 
-Each frame is assigned an attention score between 0 (distracted) and 1 (fully attentive).
+Select your repo and deploy streamlit_app.py
 
-### 🧩 Future Improvements
-Replace dlib with MediaPipe or OpenVINO for faster inference
+Enjoy real-time attention tracking in the browser!
 
-Add heatmaps or score graphs to Streamlit
+✅ TODOs / Suggestions for Improvement
+Feature	Status	Suggestion
+✅ Head pose + Eye closure	Done	Consider integrating dlib or deep learning for robustness
+⏳ Multi-face detection	Not done	Currently handles only 1 face – extend for classrooms
+⏳ Long-session reporting	Not done	Add attention heatmaps or daily summary
+⏳ Notifications	Not done	Send alerts to user/teacher when attention drops
+⏳ Face ID tagging	Not done	Save attention logs per student ID
+⏳ Audio feedback	Not done	"You're losing focus" – optional voice feedback
 
-Export attention scores as CSV
+🧠 Tech Stack
+Streamlit – for UI and live demo
 
-Multi-face tracking (for group classrooms)
+OpenCV – for frame capture & rendering
 
-Deploy to Streamlit Cloud or Hugging Face
+MediaPipe – for face landmarks
 
-### 🤝 Contributing
-Feel free to fork, enhance, or suggest features via Issues or Pull Requests!
+NumPy – for EAR calculations
 
-🧑‍🎓 Built with ❤️ by Kafura
+Pandas – for log management & CSV export
+
+👤 Author
+Joan Kabura Njoroge
+🌐 Website | 📧 Email | 🐙 GitHub
+
+📄 License
+MIT License – free to use and adapt with attribution.
+
+🧪 Want to Contribute?
+PRs are welcome! You can:
+
+Add audio alerts
+
+Improve multi-face support
+
+Add database backend for attention logs
