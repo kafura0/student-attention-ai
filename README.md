@@ -1,98 +1,106 @@
-🧠 Student Attention AI
-Real-time Attention Detection App for students using webcam or uploaded videos. Detects attentiveness based on facial orientation and eye closure using computer vision and machine learning.
+# 🎓 Student Attention & Cheating Detection AI
 
-Built with Streamlit, MediaPipe, and OpenCV – deployable on both desktop and mobile via browser.
+A real-time multi-student detection system using webcam or video input to track attention levels, detect cheating cues, and log engagement analytics using computer vision with **MediaPipe**, **OpenCV**, and **Streamlit**.
 
-🚀 Features
-✅ Live camera or uploaded video analysis
+> 🔍 Ideal for online learning, remote exams, or in-class monitoring.
 
-✅ Face detection with attention scoring
+---
 
-✅ Eye closure detection (EAR-based) for drowsiness detection
+## 🚀 Features
 
-✅ Real-time annotated video display
+- ✅ Multi-Student Detection (10+ faces)
+- 👁️ Eye Closure Detection (sleepiness / inattentiveness)
+- 🧠 Head Pose Estimation (look direction)
+- 👀 Gaze Tracking (left/right/off-screen)
+- 🌀 Motion Detection (fidgeting / distraction)
+- ⚠️ Cheating Flagging based on combined metrics
+- 🧾 Real-Time Feedback within frame (Attentive, Drowsy, Looking Away, etc.)
+- 📈 Attention Logging & Plotly Charts
+- 📦 CSV Export of Session Logs
+- 🎛️ Adjustable Frame Skip, Min Motion Area, and Source (webcam/video)
 
-✅ Attention logs exportable to CSV
+---
 
-✅ Visual attention timeline chart
+## 🖼️ Live Demo
 
-✅ Easy deployment via Streamlit Cloud
+[![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-spaces-lg.svg)](https://huggingface.co/spaces/YOUR_USERNAME/student-attention-ai)
 
-📸 Demo
-<img src="https://github.com/your-username/student-attention-ai/assets/demo.gif" width="600"/>
-🛠️ Installation
-bash
-Copy
-Edit
-git clone https://github.com/your-username/student-attention-ai.git
-cd student-attention-ai
-pip install -r requirements.txt
-streamlit run streamlit_app.py
-📝 Python ≥ 3.8 recommended. For live webcam use, ensure camera permissions are allowed.
+---
 
-📂 Project Structure
-bash
-Copy
-Edit
+## 🗂️ Project Folder Structure
+
+```bash
 student-attention-ai/
 │
-├── streamlit_app.py           # Streamlit UI and logic
-├── utils/
-│   └── attention_detector.py  # Face + Eye Closure detection
-├── logs/
-│   └── attention_log.csv      # Exported attention sessions
-├── requirements.txt
-└── README.md
-📈 Example Use Cases
-🏫 Online learning platforms (Zoom/Google Meet)
+├── streamlit_app.py              # Main Streamlit UI app
+├── attention_detector.py         # Core detection logic
+├── requirements.txt              # Python dependencies
+├── README.md                     # Project overview
+│
+├── sample_video.mp4              # Optional sample video
+└── utils/                        # (Optional if split into modules)
+    ├── __init__.py
+    └── helper.py                 # Utility functions (if any)
+```
 
-🧪 Remote exam invigilation
 
-👩‍🏫 Classroom analytics
+## 🛠 Installation (Local)
+```bash
 
-💼 Employee monitoring (optional adaptation)
+# Clone the repo
+git clone https://github.com/your-username/student-attention-ai.git
+cd student-attention-ai
 
-📤 Deployment (Streamlit Cloud)
-Push the project to GitHub
+# Setup virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-Visit streamlit.io/cloud
+# Install dependencies
+pip install -r requirements.txt
 
-Select your repo and deploy streamlit_app.py
+# Run the app
+streamlit run streamlit_app.
 
-Enjoy real-time attention tracking in the browser!
+```
 
-✅ TODOs / Suggestions for Improvement
-Feature	Status	Suggestion
-✅ Head pose + Eye closure	Done	Consider integrating dlib or deep learning for robustness
-⏳ Multi-face detection	Not done	Currently handles only 1 face – extend for classrooms
-⏳ Long-session reporting	Not done	Add attention heatmaps or daily summary
-⏳ Notifications	Not done	Send alerts to user/teacher when attention drops
-⏳ Face ID tagging	Not done	Save attention logs per student ID
-⏳ Audio feedback	Not done	"You're losing focus" – optional voice feedback
+## 🌍 Deployment (Hugging Face Spaces)
+Requires a Hugging Face account
 
-🧠 Tech Stack
-Streamlit – for UI and live demo
+Create a new Space → choose Streamlit SDK
 
-OpenCV – for frame capture & rendering
+Push your files (ensure this structure exists):
+```bash
 
-MediaPipe – for face landmarks
+git lfs install
+git clone https://huggingface.co/spaces/YOUR_USERNAME/student-attention-ai
+cd student-attention-ai
+# Copy all project files here
+git add .
+git commit -m "Initial commit"
+git push
+```
 
-NumPy – for EAR calculations
+## 📊 Output Analysis
+** Real-time visual feedback (bounding boxes with attention labels)
 
-Pandas – for log management & CSV export
+** Sidebar controls to start/stop session
 
-👤 Author
-Joan Kabura Njoroge
-🌐 Website | 📧 Email | 🐙 GitHub
+** Line chart showing attention over time (Plotly)
 
-📄 License
-MIT License – free to use and adapt with attribution.
+** Downloadable CSV session log
 
-🧪 Want to Contribute?
-PRs are welcome! You can:
+## 🔮 Roadmap / Future Improvements
+** 🔐 Facial recognition for named student tracking
 
-Add audio alerts
+** 🗣️ Audio analysis for whispering/speech detection
 
-Improve multi-face support
+** 🧠 Custom model integration (e.g., drowsiness, emotion detection)
 
-Add database backend for attention logs
+** 📡 Remote teacher dashboard with live alerts
+
+** 🌐 Cross-device sync (mobile + desktop)
+
+** 🎓 LMS integration (Moodle, Google Classroom, etc.)
+
+## 📘 License
+MIT License — Free to use, modify and distribute with attribution.
