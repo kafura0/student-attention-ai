@@ -1,6 +1,9 @@
-streamlit==1.35.0
 mediapipe==0.10.9
-opencv-python==4.9.0.80
 numpy==1.26.4
 pandas==2.2.2
 plotly
+streamlit
+opencv-python-headless
+Pillow
+torch
+torchvision
