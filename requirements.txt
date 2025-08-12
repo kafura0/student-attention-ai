@@ -1,8 +1,8 @@
-streamlit>=1.35
-numpy>=1.26
-pandas>=2.2
-plotly>=5.15
-opencv-python-headless
+numpy==1.26.4
+pandas==2.2.2
+plotly
+streamlit
+opencv-python-headless==4.10.0.84
 Pillow
 torch
 torchvision
