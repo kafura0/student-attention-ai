@@ -11,7 +11,35 @@ from attention_detector import AttentionDetector
 # --------------------------
 # App Setup
 # --------------------------
-st.set_page_config(page_title="📚 Attention & Cheating Detector", layout="wide")
+st.set_page_config(page_title="📚 Attention & Cheating Detector", layout="centered")
+# ---------------------------
+# CUSTOM STYLING
+# ---------------------------
+st.markdown("""
+    <style>
+    .block-container {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        max-width: 900px;
+        margin: auto;
+    }
+    h1, h2, h3 {
+        color: #4CAF50;
+    }
+    /* Mobile-friendly adjustments */
+    @media (max-width: 768px) {
+        .block-container {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+        }
+        img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("🎓 Multi-Student Attention & Cheating Detector")
 
 st.markdown("""
