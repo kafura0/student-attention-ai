@@ -8,8 +8,6 @@ class AttentionDetector:
         self.face_mesh = self.mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=5, refine_landmarks=True)
         self.mp_drawing = mp.solutions.drawing_utils
         self.draw_landmarks = draw_landmarks
-        self.min_motion_area = min_motion_area
-        
 
         # Eye landmarks for left and right
         self.left_eye_ids = [33, 160, 158, 133, 153, 144]
