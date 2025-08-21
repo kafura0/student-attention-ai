@@ -6,3 +6,5 @@ opencv-python-headless==4.10.0.84
 Pillow
 torch
 torchvision
+mediapipe==0.10.14
+matplotlib
